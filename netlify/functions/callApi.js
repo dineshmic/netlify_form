@@ -1,6 +1,18 @@
 // netlify/functions/callApi.js
 const axios = require('axios');
 
+
+exports.handler = async (event) => {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+      body: JSON.stringify({ message: 'Function triggered' }),
+    };
+  };
+
 exports.handler = async (event) => {
   try {
     // Validate that the request method is GET
