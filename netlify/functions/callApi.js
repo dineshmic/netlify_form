@@ -1,38 +1,20 @@
 // netlify/functions/callApi.js
 const axios = require('axios');
 
-
-exports.handler = async (event) => {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-      body: JSON.stringify({ message: 'Function triggered' }),
-    };
-  };
-
 exports.handler = async (event) => {
   try {
-    // Validate that the request method is GET
-    if (event.httpMethod !== 'GET') {
-      return { statusCode: 405, body: 'Method Not Allowed' };
-    }
+    console.log('Function triggered');
 
-    // Parse the request body
-    const data = JSON.parse(event.body);
+    // Hardcoded values for demonstration
+    const apiKey = '0db948a6-50f1-d9f3-4579-4f8036dc3830';
+    const param1 = 'your_param1_value';
+    const param2 = 'your_param2_value';
 
-    // Check if required parameters are present
-    if (!data.apiKey) {
-      return { statusCode: 400, body: 'Missing required parameters' };
-    }
-
-    // Your API endpoint
+    // Your API endpoint with query parameters for GET request
     const apiUrl = 'https://api.forthcrm.com/v1/contacts/885728210/debts/enrolled';
 
-    // Make the API request
-    const response = await axios.post(apiUrl, {
+    // Make the API request with GET method
+    const response = await axios.get(apiUrl, {
       headers: {
         'Content-Type': 'application/json',
         'API-Key': '0db948a6-50f1-d9f3-4579-4f8036dc3830',
